@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// Reglas de seguridad de Cloud Firestore para el Sistema de Apoyo Digital.
+// El glosario es de solo lectura desde la aplicación; el historial acepta
+// registros anónimos con estructura validada y no permite modificarlos.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /glosario/{termino} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /historial/{registro} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['sesion', 'calculadora', 'unidad', 'resumen', 'creado'])
+        && request.resource.data.sesion is string
+        && request.resource.data.sesion.size() <= 64
+        && request.resource.data.calculadora is string
+        && request.resource.data.calculadora.size() <= 64
+        && request.resource.data.unidad in [1, 2, 3, 4]
+        && request.resource.data.resumen is string
+        && request.resource.data.resumen.size() <= 300
+        && request.resource.data.creado == request.time;
+      allow update, delete: if false;
+    }
+  }
+}

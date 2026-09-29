@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "historial",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "sesion", "order": "ASCENDING" },
+        { "fieldPath": "creado", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

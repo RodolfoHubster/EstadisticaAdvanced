@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --altura-nav: 56px;
+    color-scheme: light;
+  }
+
+  html {
+    @apply bg-fondo font-sans text-tinta antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply min-h-screen bg-fondo;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  sub,
+  sup {
+    font-size: 0.72em;
+    line-height: 0;
+  }
+
+  ::selection {
+    background-color: rgb(249 178 51 / 0.35);
+    color: #1f1f1f;
+  }
+
+  :focus-visible {
+    outline: 2px solid #f9b233;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .etiqueta-seccion {
+    @apply font-mono text-[11px] font-medium uppercase tracking-etiqueta text-tinta-secundaria;
+  }
+
+  .cifra {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Retícula tipo papel milimetrado: refuerza el carácter técnico sin competir con el contenido. */
+  .papel-milimetrado {
+    background-image:
+      linear-gradient(to right, rgb(0 102 51 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 102 51 / 0.055) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .papel-milimetrado-claro {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .campo-base {
+    @apply w-full rounded-tarjeta border border-borde bg-fondo px-3.5 py-2.5 font-mono text-[15px] text-tinta transition-colors placeholder:text-tinta-secundaria/50 hover:border-tinta-secundaria/50 focus:border-uabc-verde focus:bg-white focus:outline-none focus:ring-2 focus:ring-uabc-dorado/40;
+  }
+
+  .boton-primario {
+    @apply inline-flex items-center justify-center gap-2 rounded-tarjeta bg-uabc-dorado px-5 py-2.5 font-display text-sm font-semibold text-uabc-verde-noche shadow-sm transition-colors hover:bg-uabc-dorado-hover focus-visible:outline-uabc-verde active:translate-y-px;
+  }
+
+  .boton-secundario {
+    @apply inline-flex items-center justify-center gap-2 rounded-tarjeta border border-borde bg-white px-4 py-2.5 text-sm font-medium text-tinta transition-colors hover:border-uabc-verde hover:text-uabc-verde;
+  }
+
+  .boton-texto {
+    @apply inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm font-medium text-uabc-verde transition-colors hover:bg-uabc-verde-tenue;
+  }
+}
